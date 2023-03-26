@@ -55,8 +55,8 @@ jobs:
         with:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
-          application_name: test
-          environment_name: Test-env
+          application_name: infra-test
+          environment_name: Infratest-env
           version_label: egg-docker-${{steps.current-time.outputs.formattedTime}}-${{ env.VERSION }}
           region: ap-northeast-2
           deployment_package: deploy/deploy.zip
