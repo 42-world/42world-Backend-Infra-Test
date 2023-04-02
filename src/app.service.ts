@@ -17,10 +17,10 @@ export class AppService {
     const secret_name = 'infra-test-env';
 
     const client = new SecretsManagerClient({
-      credentials: {
-        accessKeyId: this.configService.getOrThrow('AWS_ACCESS_KEY'),
-        secretAccessKey: this.configService.getOrThrow('AWS_SECRET_KEY'),
-      },
+      // credentials: {
+      //   accessKeyId: this.configService.getOrThrow('AWS_ACCESS_KEY'),
+      //   secretAccessKey: this.configService.getOrThrow('AWS_SECRET_KEY'),
+      // },
       region: 'ap-northeast-2',
     });
 
