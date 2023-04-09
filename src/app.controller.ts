@@ -11,7 +11,7 @@ export class AppController {
   }
 
   @Get('secret')
-  async getSecret(): Promise<string> {
+  async getSecret(): Promise<Record<string, string>> {
     return await this.appService.getSecret();
   }
 }

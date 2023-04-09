@@ -1,7 +1,3 @@
-import {
-  GetSecretValueCommand,
-  SecretsManagerClient,
-} from '@aws-sdk/client-secrets-manager';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
@@ -13,26 +9,13 @@ export class AppService {
     return 'Hello World!';
   }
 
-  async getSecret(): Promise<string> {
-    const secret_name = 'infra-test-env';
+  async getSecret(): Promise<Record<string, string>> {
+    const ping = this.configService.getOrThrow('PING');
+    const pong = this.configService.getOrThrow('PONG');
 
-    const client = new SecretsManagerClient({
-      // credentials: {
-      //   accessKeyId: this.configService.getOrThrow('AWS_ACCESS_KEY'),
-      //   secretAccessKey: this.configService.getOrThrow('AWS_SECRET_KEY'),
-      // },
-      region: 'ap-northeast-2',
-    });
-
-    const response = await client.send(
-      new GetSecretValueCommand({
-        SecretId: secret_name,
-        VersionStage: 'AWSCURRENT', // VersionStage defaults to AWSCURRENT if unspecified
-      }),
-    );
-
-    const secret = response.SecretString;
-
-    return secret;
+    return {
+      ping,
+      pong,
+    };
   }
 }
